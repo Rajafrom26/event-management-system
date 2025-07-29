@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<h2>Upcoming Events</h2>
+
+{% for event in events %}
+<div>
+    <h3>{{ event.title }}</h3>
+    <img src="{{ url_for('static', filename='uploads/' + event.image) }}" width="200">
+    <p><strong>Date & Time:</strong> {{ event.date_time }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p>{{ event.description }}</p>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

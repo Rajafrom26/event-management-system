@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Event Form{% endblock %}
+
+{% block content %}
+<h2>{% if event %}Edit Event{% else %}Add Event{% endif %}</h2>
+<form method="POST" enctype="multipart/form-data">
+    <label>Title:</label>
+    <input type="text" name="title" value="{{ event.title if event else '' }}" required>
+
+    <label>Description:</label>
+    <textarea name="description" required>{{ event.description if event else '' }}</textarea>
+
+    <label>Date & Time:</label>
+    <input type="datetime-local" name="date_time" value="{{ event.date_time if event else '' }}" required>
+
+    <label>Location:</label>
+    <input type="text" name="location" value="{{ event.location if event else '' }}" required>
+
+    <label>Image:</label>
+    <input type="file" name="image" {% if not event %}required{% endif %}>
+
+    <button type="submit">{% if event %}Update Event{% else %}Add Event{% endif %}</button>
+</form>
+{% endblock %}
